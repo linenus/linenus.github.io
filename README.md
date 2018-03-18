@@ -1,5 +1,5 @@
 ## Welcome to Linenus Gitblog
-该博客是利用 GitHub Pages+Jekyll 搭建而成，并参照了Jekyll的[开源模板NexT](http://theme-next.simpleyyt.com/getting-started.html#install-next-theme)，在此非常感谢GitHub Pages这么好用的项目，也感谢为此模板做出贡献的大佬，详情欢迎访问我的[Gitblog](https://linenus.github.io.git)
+该博客是利用 GitHub Pages+Jekyll 搭建而成，并参照了Jekyll的[开源模板NexT](http://theme-next.simpleyyt.com/getting-started.html#install-next-theme)，在此非常感谢GitHub Pages这么好用的项目，也感谢为此模板做出贡献的大佬，详情欢迎访问我的[Gitblog](https://linenus.github.io)
 
 ## 如果你对此感兴趣
 那么你只需几个步骤就可以搭建基于GitHub Pages的个人博客网站；
