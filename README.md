@@ -1,13 +1,12 @@
-## Welcome to Jackpon Gitblog
+## Welcome to Linenus Gitblog
 该博客是利用 GitHub Pages+Jekyll 搭建而成，并参照了Jekyll的[开源模板NexT](http://theme-next.simpleyyt.com/getting-started.html#install-next-theme)，在此非常感谢GitHub Pages这么好用的项目，也感谢为此模板做出贡献的大佬，详情欢迎访问我的[Gitblog](https://linenus.github.io.git)
 
----
 ## 如果你对此感兴趣
 那么你只需几个步骤就可以搭建基于GitHub Pages的个人博客网站；
 
 1. **Fork该项目，将在你仓库的该项目取名为 “你的用户名.github.io”(setting那改)，
 此时在setting的GitHub Pages那一栏就已经生成你的个人博客网站了，只不过样式是我的；
-简单介绍下各个文件目录代表什么：**
+简单介绍下各个文件目录代表什么：**<br>
   index.html：这是你博客的主页面，里面的内容就是你的主页了；<br>
   \_config.yml：这是你博客的基本配置文件，里面有你博客的名字，以及存放博主的一些基本信息；<br>
   \_layouts：这文件夹里面存放你每个页面的设计，一般有default.html（默认页面）和posts.html（博文页面）；<br>
