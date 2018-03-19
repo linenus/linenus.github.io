@@ -243,7 +243,7 @@ avatar: /assets/images/avatar.gif
 
 # Table Of Contents in the Sidebar
 toc:
-  enable: true
+  enable: false
 
   # Automatically add list number to toc.
   number: true
