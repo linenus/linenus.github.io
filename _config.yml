@@ -39,7 +39,7 @@ exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md", "
 
 # Code Highlighter
 ## 'pygments' is unsupported on GitHub Pages now.
-highlighter: 
+highlight: 
   enable: true
   line_number: true
   auto_detect: true
