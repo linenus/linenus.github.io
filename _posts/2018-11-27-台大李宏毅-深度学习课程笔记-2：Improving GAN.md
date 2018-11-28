@@ -11,6 +11,7 @@ updated: 2018-11-27
 ### 1.1 f-divergence
 2017年提出的[f-GAN](https://arxiv.org/abs/)可以总结为一句话：衡量两个分布（$P_data,P_G$）差异，除了 $JS-divergence$ 外，你可以选择任何 $f-divergence$。但是，什么是 $f-divergence$ 呢？  
 假如有两个分布 $P$ 和 $Q$，$f-divergence$ 就是衡量两个分布有多不一样，$f-divergence$ 的定义如下：  
+
 $$D_f(P||Q)=\int_xq(x)f\left(\frac{p(x)}{q(x)}\right)dx$$  
 其中，$f$ 函数满足两点：  
 - f是凸函数
@@ -59,24 +60,20 @@ G^\ast&=arg\,\mathop{min}_GD_f(P_{data},P_G)\\
 $$  
 从上面可以看出，原来的GAN只是 $f-divergence$ 的一个特例，我们想要Minimize哪个 $divergence$，只需找出它的 $Conjugate\ Function\ f^\ast$ 替换进去就可以了，这样一个完整的GAN Framework就产生了。文中尝试了不同的$divergence$。  
 ![](/assets/blog_images/2018-11-27/CG2.png)  
-比如GAN：
-$$
-\begin{split}
+比如GAN：  
+$$\begin{split}
 &\int p(x)\log\frac{2p(x)}{p(x)+q(x)}+q(x)\log\frac{2q(x)}{p(x)+q(x)}dx-\log(4)\\
 =&\int q(x)\frac{p(x)}{q(x)}\log\frac{p(x)}{p(x)+q(x)}+q(x)\log\frac{q(x)}{p(x)+q(x)}dx\\
 =&\int -q(x)\frac{p(x)}{q(x)}\log\frac{p(x)+q(x)}{p(x)}-q(x)\log\frac{p(x)+q(x)}{q(x)}dx\\
 =&\int q(x)\left(-\frac{p(x)}{q(x)}\log\left(\frac{1+\frac{p(x)}{q(x)}}{\frac{p(x)}{q(x)}}\right)-log\left(1+\frac{p(x)}{q(x)}\right)\right)dx\\
 =&\int q(x)\left(\frac{p(x)}{q(x)}\log\frac{p(x)}{q(x)}-\frac{p(x)}{q(x)}\log\left(1+\frac{p(x)}{q(x)}\right)-\log\left(1+\frac{p(x)}{q(x)}\right)\right)dx\\
 =&\int q(x)\left(\frac{p(x)}{q(x)}\log\frac{p(x)}{q(x)}-\left(1+\frac{p(x)}{q(x)}\right)\log\left(1+\frac{p(x)}{q(x)}\right)\right)dx
-\end{split}
-$$  
+\end{split}$$  
 因此，GAN的$f$函数和$f^\ast$函数为:  
-$$
-\begin{split}
+$$\begin{split}
 &f=u\log u-(1+u)\log(1+u)\\
 &f^\ast=-log(1-exp(t))
-\end{split}
-$$
+\end{split}$$
 实验结果表明选择不同的$divergence$模型拟合的效果也不一样：  
 ![](/assets/blog_images/2018-11-27/CG3.png)  
 f-GAN 还做了一处改进，原来的 GAN 求解 $D^\ast$ 需要重复 k 次update，求解 $G^\ast$ 只需一次update，而作者证明了求解 $D^\ast$ 和 $G^\ast$ 时都进行一次update也是可以收敛的。  
