@@ -23,7 +23,11 @@ $$D_f(P||Q)=\int_xq(x)f\left(\frac{p(x)}{q(x)}\right)dx$$
 
 ### 1.2 Fenchel Conjugate  
 每一个凸函数 $f$ 都有一个 $Conjugate\ Function\ f^\ast$:  
-$$f^\ast(t)=\mathop{max}_{x\in dom(f)}\lbrace xt-f(x)\rbrace$$  
+$$
+\begin{split}
+f^\ast(t)=\mathop{max}_{x\in dom(f)}\lbrace xt-f(x)\rbrace
+\end{split}
+$$  
 通过假设不同的 $t$ 代入 $f^\ast$，然后求导得到最大值，$f^\ast$ 的样子如下图：
 ![](/assets/blog_images/2018-11-27/FC1.png)  
 当$f(x)=x\log(x)$时，$f^\ast(t)=\exp^{t-1}$:
@@ -97,7 +101,11 @@ $$B(\lambda)=\sum_{x_p,x_q}\lambda(x_p,x_q)||x_p-x_q||$$
 ![](/assets/blog_images/2018-11-27/EMD5.png)   
 既然 EM 距离有如此优越的性质，如果我们能够把它定义为生成器的 $loss$，就可以产生有意义的梯度来更新生成器，使得生成分布被拉向真实分布。  
 WGAN作者用了一个已有的定理把 EM 距离变换为如下形式：  
-$$W(P_{data},P_G)=\frac{1}{K}\mathop{sup}_{||f||_L\leq K}E_{x\sim P_{data}}[f(x)]-E_{x\sim P_G}[f(x)]$$  
+$$
+\begin{split}
+W(P_{data},P_G)=\frac{1}{K}\mathop{sup}_{||f||_L\leq K}E_{x\sim P_{data}}[f(x)]-E_{x\sim P_G}[f(x)]
+\end{split}
+$$  
 将 EM 距离与 GAN 联系起来：  
 ![](/assets/blog_images/2018-11-27/BGF1.png)  
 上图中可以发现，原来的 GAN 里 $D$ 是没有任何限制的，而 WGAN 中的 $D$ 要符合 $1-Lipschitz$，$1-Lipschitz$ 表示一个函数集，当 $f$ 是一个 $Lipschitz$ 函数时，它应该受到以下约束：  
@@ -106,7 +114,10 @@ $$||f(x_1)-f(x_2)||\leq K||x_1-x_2||$$
 为什么要对生成器 $D$ 做限制呢？假设我们现在有两个一维的分布，$x_1$ 和 $x_2$ 的距离是 $d$，显然他们之间的 EM 距离也是 $d$：
 ![](/assets/blog_images/2018-11-27/BGF2.png)  
 我们要去优化$W(P_{data},P_G)$：  
-$$W(P_{data},P_G)=\mathop{max}_{D\in 1-Lipschitz}\lbrace E_{x\sim P_{data}}[f(x)]-E_{x\sim P_G}[f(x)]\rbrace$$  
+$$\begin{split}
+W(P_{data},P_G)=\mathop{max}_{D\in 1-Lipschitz}\lbrace E_{x\sim P_{data}}[f(x)]-E_{x\sim P_G}[f(x)]\rbrace
+\end{split}
+$$  
 只需让 $D(x_1)=+\infty$，而 $D(x_2)=-\infty$ 即可。但这样子会导致模型训练非常困难：判别器区分能力太强，很难驱使生成器提高生成分布数据质量。  
 如果加上了 $Lipschitz$ 限制，$||D(x_1)-D(x_2)||\leq||x_1-x_2||=d$，那么判别器在不同分布上的结果限制在了一个较小的范围中。传统的 GAN 所使用的判别器是一个最终经过 $sigmoid$ 输出的神经网络，它的输出曲线肯定是一个 S 型。在真实分布附近是 1，在生成分布附近是 0。而现在我们对判别器施加了这个限制，同时不用在最后一层使用 $sigmoid$，它有可能是任何形状的线段，只要能让 $||D(x_1)-D(x_2)||\leq d$ 即可。如下图所示：  
 ![](/assets/blog_images/2018-11-27/BGF3.png)
@@ -118,7 +129,8 @@ WGAN的 $Discriminator\ loss$ 可以衡量模型的优劣，如下图中，$loss
 ![](/assets/blog_images/2018-11-27/BGF4.png)
 ### 2.2 Improving WGAN
 在最初的 WGAN 中，通过截断权重的方法来实现 对判别器 $D$ 实现 $1−Lipschitz$ 的等效限制。$1−Lipschitz$ 函数有一个特性：当一个函数是 $1−Lipschitz$ 函数时，它的梯度的 norm 将永远小于等于 1。  
-$$D\in 1−Lipschitz\Longleftrightarrow||\nabla_xD(x)||\leq1\ for\ all\ x$$ 这个特性可以将原来的WGAN转换成下面的样子：
+$$D\in 1−Lipschitz\Longleftrightarrow||\nabla_xD(x)||\leq1\ for\ all\ x$$  
+这个特性可以将原来的WGAN转换成下面的样子：
 $$
 \begin{split}
 W(P_{data},P_G)=&\mathop{max}_{D}\lbrace E_{x\sim P_{data}}[f(x)]-E_{x\sim P_G}[f(x)]\\
