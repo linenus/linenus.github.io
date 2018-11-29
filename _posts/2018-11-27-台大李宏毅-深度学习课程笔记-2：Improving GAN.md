@@ -9,7 +9,7 @@ updated: 2018-11-27
 ---
 ## 1 GAN Framework
 ### 1.1 f-divergence
-2017年提出的[f-GAN](https://arxiv.org/abs/)可以总结为一句话：衡量两个分布（$P_data,P_G$）差异，除了 $JS-divergence$ 外，你可以选择任何 $f-divergence$。但是，什么是 $f-divergence$ 呢？  
+2017年提出的[f-GAN](https://arxiv.org/abs/)可以总结为一句话：衡量两个分布（$P_{data},P_G$）差异，除了 $JS-divergence$ 外，你可以选择任何 $f-divergence$。但是，什么是 $f-divergence$ 呢？  
 假如有两个分布 $P$ 和 $Q$，$f-divergence$ 就是衡量两个分布有多不一样，$f-divergence$ 的定义如下：  
 $$D_f(P||Q)=\int_xq(x)f\left(\frac{p(x)}{q(x)}\right)dx$$  
 其中，$f$ 函数满足两点：  
